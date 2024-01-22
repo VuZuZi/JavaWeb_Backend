@@ -19,4 +19,7 @@ public interface IUserDAO {
     List<User> searchByName(String key);
 
     List<User> searchByCountry(String country);
+    User getUserById(int id);
+
+    void insertUserStore(User user) throws SQLException;
 }
