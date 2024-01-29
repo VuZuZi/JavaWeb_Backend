@@ -55,6 +55,12 @@ public class UserServlet extends HttpServlet {
 
             try {
                 switch (action) {
+                    case "permision":
+
+                        addUserPermision(request, response);
+
+                        break;
+
                     case "searchByCountry":
                         String country = request.getParameter("countrySearch");
                         searchByCountry(request,response,country);
@@ -82,6 +88,14 @@ public class UserServlet extends HttpServlet {
                 throw new ServletException(ex);
             }
         }
+
+    private void addUserPermision(HttpServletRequest request, HttpServletResponse response) {
+        User user = new User("quan", "quan.nguyen@codegym.vn", "vn");
+
+        int[] permision = {1, 2, 4};
+
+        userDAO.addUserTransaction(user, permision);
+    }
 
     private void searchByCountry(HttpServletRequest request, HttpServletResponse response, String country)
         throws SQLException, ServletException, IOException{

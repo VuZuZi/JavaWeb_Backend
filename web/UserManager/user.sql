@@ -47,4 +47,21 @@ BEGIN
     END$$
 
 DELIMITER ;
+create table Permision(
+id int primary key,
+name varchar(50)
+);
+create table User_Permision(
+permision_id int(11),
+user_id int(11),
+FOREIGN KEY (user_id) REFERENCES users(id),
+FOREIGN KEY (permision_id) REFERENCES Permision(id)
+);
 
+insert into Permision(id, name) values(1, 'add');
+
+insert into Permision(id, name) values(2, 'edit');
+
+insert into Permision(id, name) values(3, 'delete');
+
+insert into Permision(id, name) values(4, 'view');
