@@ -1,10 +1,15 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: markd
+  Date: 31/01/2024
+  Time: 14:30
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %><html>
 <head>
-    <title>User Management Application</title>
+    <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
@@ -18,7 +23,6 @@
             bottom: 0;
         }
     </style>
-
 </head>
 <body>
 
@@ -42,26 +46,26 @@
 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/users?action=create">Add</a>
+                    <a class="nav-link" href="/product?action=create">Add</a>
                 </li>
                 <li>
-<%--                    <a class="nav-link" href="#">Services</a>--%>
-                    <form class="d-flex ms-auto" action="/user?countrySearch=#&action=searchByCountry=#">
-                         <input class="form-control me-2" type="search" placeholder="Search by name" aria-label="Search" name="nameSearch" value="${key}">
-                         <input type="hidden" name="action" value="searchByName">
-                         <button class="btn btn-outline-success" type="submit">
-<%--                             <i class="bi bi-search"></i>--%>
-                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                             </svg>
-                         </button>
+                    <%--                    <a class="nav-link" href="#">Services</a>--%>
+                    <form class="d-flex ms-auto" action="/product?nameSearch=&action=searchByName">
+                        <input class="form-control me-2" type="search" placeholder="Search by name" aria-label="Search" name="nameSearch" value="${key}">
+                        <input type="hidden" name="action" value="searchByName">
+                        <button class="btn btn-outline-success" type="submit">
+                            <%--                             <i class="bi bi-search"></i>--%>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                            </svg>
+                        </button>
                     </form>
                 </li>
 
                 <li>
-                    <form class="d-flex ms-auto" action="/user?countrySearch=&action=searchByCountry">
-                        <input class="form-control me-2" type="search" placeholder="Search by country" aria-label="Search by country" name="countrySearch" value="${c}">
-                        <input type="hidden" name="action" value="searchByCountry">
+                    <form class="d-flex ms-auto" action="/product?pkey=&action=priceSearch">
+                        <input class="form-control me-2" type="search" placeholder="search price" aria-label="Search by price" name="priceSearch" value="${pKey}">
+                        <input type="hidden" name="action" value="priceSearch">
                         <button class="btn btn-outline-success" type="submit">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
@@ -73,40 +77,51 @@
         </div>
     </div>
 </nav>
+
+
 <div class="container">
     <div class="row">
         <table id="example" class="table table-striped" style="width:100%">
             <thead>
             <tr>
-                <th>ID </th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Country</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>STT </th>
+                <th>Prodcut Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Color</th>
+                <th>Category</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="user" items="${listUser}">
-                <tr>
-                    <td><c:out value="${user.id}"/></td>
-                    <td><c:out value="${user.name}"/></td>
-                    <td><c:out value="${user.email}"/></td>
-                    <td><c:out value="${user.country}"/></td>
+
+
+<%--                <c:forEach var="p" items="${list}">--%>
+<%--                    <tr>--%>
+<%--                        <td>${p.stt}</td>--%>
+<%--                        <td>${p.ten}</td>--%>
+<%--                        <td><c:out value="${p.stt}"/></td>--%>
+<%--                        <td></td>--%>
+<%--                        <td></td>--%>
+<%--                    </tr>--%>
+<%--                </c:forEach>--%>
+
+            <c:forEach var="p" items="${list}">
+                        <tr>
+                            <td>${p.stt}</td>
+                            <td>${p.ten}</td>
+                            <td>${p.gia}</td>
+                            <td>${p.so_luong}</td>
+                            <td>${p.mau}</td>
+                            <td>${p.ten_muc}</td>
+
                     <td>
-<%--                        <a href="/users?action=edit&id=${user.id}">--%>
-<%--                            Edit--%>
-<%--                        </a>--%>
-                        <button class="btn btn-primary" onclick="window.location.href='/users?action=edit&id=${user.id}'">Edit</button>
-<%--                        <a href="/users?action=delete&id=${user.id}">--%>
-<%--                            Delete--%>
-<%--                        </a>--%>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delModal${user.id}">
+                        <button class="btn btn-primary" onclick="window.location.href='/users?action=edit&id=${p.id}'">Edit</button>
+
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delModal${p.id}">
                             Delete
                         </button>
-                        <div class="modal" id="delModal${user.id}">
+                        <div class="modal" id="delModal${p.id}">
                             <div class="modal-dialog">
                                 <div class="modal-content">
 
@@ -118,12 +133,13 @@
 
                                     <!-- Modal body -->
                                     <div class="modal-body">
-                                        This action cannot be return
+                                        Delete ${p.ten}
+
                                     </div>
 
                                     <!-- Modal footer -->
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-warning" data-bs-dismiss="modal" onclick="window.location.href='/users?action=delete&id=${user.id}'">Delete</button>
+                                        <button type="button" class="btn btn-warning" data-bs-dismiss="modal" onclick="window.location.href='/product?action=delete&id=${p.id}'">Delete</button>
                                     </div>
 
                                 </div>
@@ -136,13 +152,15 @@
         </table>
     </div>
 </div>
+
+
+
 <footer class="footer bg-info">
     <div class="container text-center">
         <p>&copy; 2022 Your Company. All rights reserved.</p>
     </div>
 </footer>
 </body>
-<%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>--%>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

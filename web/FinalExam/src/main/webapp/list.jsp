@@ -1,10 +1,16 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: markd
+  Date: 29/01/2024
+  Time: 19:03
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <html>
 <head>
-    <title>User Management Application</title>
+    <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
@@ -18,10 +24,8 @@
             bottom: 0;
         }
     </style>
-
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <!-- Brand và Toggle Button cho Mobile -->
@@ -45,22 +49,22 @@
                     <a class="nav-link" href="/users?action=create">Add</a>
                 </li>
                 <li>
-<%--                    <a class="nav-link" href="#">Services</a>--%>
+                    <%--                    <a class="nav-link" href="#">Services</a>--%>
                     <form class="d-flex ms-auto" action="/user?countrySearch=#&action=searchByCountry=#">
-                         <input class="form-control me-2" type="search" placeholder="Search by name" aria-label="Search" name="nameSearch" value="${key}">
-                         <input type="hidden" name="action" value="searchByName">
-                         <button class="btn btn-outline-success" type="submit">
-<%--                             <i class="bi bi-search"></i>--%>
-                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                             </svg>
-                         </button>
+                        <input class="form-control me-2" type="search" placeholder="Search by name" aria-label="Search" name="nameSearch" value="${key}">
+                        <input type="hidden" name="action" value="searchByName">
+                        <button class="btn btn-outline-success" type="submit">
+                            <%--                             <i class="bi bi-search"></i>--%>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                            </svg>
+                        </button>
                     </form>
                 </li>
 
                 <li>
                     <form class="d-flex ms-auto" action="/user?countrySearch=&action=searchByCountry">
-                        <input class="form-control me-2" type="search" placeholder="Search by country" aria-label="Search by country" name="countrySearch" value="${c}">
+                        <input class="form-control me-2" type="search" placeholder="Search by room" aria-label="Search by country" name="countrySearch" value="${c}">
                         <input type="hidden" name="action" value="searchByCountry">
                         <button class="btn btn-outline-success" type="submit">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -78,35 +82,40 @@
         <table id="example" class="table table-striped" style="width:100%">
             <thead>
             <tr>
-                <th>ID </th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Country</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>Stt</th>
+                <th>Mã phòng trọ</th>
+                <th>Tên người thuê trọ</th>
+                <th>Số điện thoại</th>
+                <th>Ngày bắt đầu thuê</th>
+                <th>Hình thức thanh toán</th>
+                <th>Ghi chú</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="user" items="${listUser}">
+            <c:forEach var="a" items="${l}">
                 <tr>
-                    <td><c:out value="${user.id}"/></td>
-                    <td><c:out value="${user.name}"/></td>
-                    <td><c:out value="${user.email}"/></td>
-                    <td><c:out value="${user.country}"/></td>
+                    <td><c:out value="${a.stt}"/></td>
+                    <td><c:out value="${a.maPhongTro}"/></td>
+                    <td><c:out value="${a.tenKhachHang}"/></td>
+                    <td><c:out value="${a.sdt}"/></td>
+                    <td><c:out value="${a.ngayBatDau}"/></td>
+                    <td><c:out value="${a.hinhThuc}"/></td>
+                    <td><c:out value="${a.ghiChu}"/></td>
                     <td>
-<%--                        <a href="/users?action=edit&id=${user.id}">--%>
-<%--                            Edit--%>
-<%--                        </a>--%>
+                            <%--                        <a href="/users?action=edit&id=${user.id}">--%>
+                            <%--                            Edit--%>
+                            <%--                        </a>--%>
                         <button class="btn btn-primary" onclick="window.location.href='/users?action=edit&id=${user.id}'">Edit</button>
-<%--                        <a href="/users?action=delete&id=${user.id}">--%>
-<%--                            Delete--%>
-<%--                        </a>--%>
+                            <%--                        <a href="/users?action=delete&id=${user.id}">--%>
+                            <%--                            Delete--%>
+                            <%--                        </a>--%>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delModal${user.id}">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delModal${a.stt}">
                             Delete
                         </button>
-                        <div class="modal" id="delModal${user.id}">
+                        <div class="modal" id="delModal${a.stt}">
                             <div class="modal-dialog">
                                 <div class="modal-content">
 
@@ -123,7 +132,7 @@
 
                                     <!-- Modal footer -->
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-warning" data-bs-dismiss="modal" onclick="window.location.href='/users?action=delete&id=${user.id}'">Delete</button>
+                                        <button type="button" class="btn btn-warning" data-bs-dismiss="modal" onclick="window.location.href='/users?action=delete&id=${a.stt}'">Delete</button>
                                     </div>
 
                                 </div>
@@ -136,13 +145,40 @@
         </table>
     </div>
 </div>
+<%--<table>--%>
+<%--    <thead>--%>
+<%--    <tr>--%>
+<%--        <th>Stt</th>--%>
+<%--        <th>Mã phòng trọ</th>--%>
+<%--        <th>Tên người thuê trọ</th>--%>
+<%--        <th>Số điện thoại</th>--%>
+<%--        <th>Ngày bắt đầu thuê</th>--%>
+<%--        <th>Hình thức thanh toán</th>--%>
+<%--        <th>Ghi chú ${a}</th>--%>
+<%--        <th></th>--%>
+<%--    </tr>--%>
+<%--    </thead>--%>
+<%--    <tbody>--%>
+<%--    <c:forEach var="a" items="${l}">--%>
+<%--        <tr>--%>
+<%--            <td><c:out value="${a.stt}"/></td>--%>
+<%--            <td><c:out value="${a.maPhongTro}"/></td>--%>
+<%--            <td><c:out value="${a.tenKhachHang}"/></td>--%>
+<%--            <td><c:out value="${a.sdt}"/></td>--%>
+<%--            <td><c:out value="${a.ngayBatDau}"/></td>--%>
+<%--        </tr>--%>
+
+
+<%--    </c:forEach>--%>
+
+<%--</tbody>--%>
+<%--</table>--%>
 <footer class="footer bg-info">
     <div class="container text-center">
         <p>&copy; 2022 Your Company. All rights reserved.</p>
     </div>
 </footer>
 </body>
-<%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>--%>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
